@@ -10,6 +10,10 @@ namespace simple_calculator
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("this is Program.cs");
+            Expression math = new Expression();
+            math.FirstExpression();
+            Console.ReadKey();
         }
     }
 }
