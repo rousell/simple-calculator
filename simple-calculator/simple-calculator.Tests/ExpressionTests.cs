@@ -46,7 +46,7 @@ namespace simple_calculator.Tests
             Assert.AreEqual(expected, actual);
         }
         [TestMethod]
-        public void ExpressionHasCorrectForm()
+        public void ExpressionHasTwoTerms()
         {
             Expression myExp = new Expression();
             myExp.FirstExpression("1 + 3");

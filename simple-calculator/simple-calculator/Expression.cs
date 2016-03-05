@@ -12,19 +12,23 @@ namespace simple_calculator
         public int secondTerm { get; private set; }
         public char mathOp { get; private set; }
         public string[] parts { get; set; }
+        public int ExpIndex { get; set; } 
 
         public string FirstExpression(string eqn)
         {
             eqn = eqn.Replace(" ", "");
             //Console.WriteLine(eqn);
 
-            int ExpIndex = eqn.IndexOfAny(new char[] { '+', '-', '*', '/' });
-
-            if (ExpIndex == -1)
+            try
             {
-                Console.WriteLine("There is no operator in your equation");
+                ExpIndex = eqn.IndexOfAny(new char[] { '+', '-', '*', '/' });
             }
-
+            catch (Exception) when (ExpIndex == -1)
+            {
+                Console.WriteLine(ExpIndex);
+                //throw new Exception("Operator is Invalid");
+            }
+            
             try
             {
                 parts = eqn.Split(eqn[ExpIndex]);
