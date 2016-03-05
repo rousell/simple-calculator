@@ -8,29 +8,41 @@ namespace simple_calculator
 {
     public class Expression
     {
-        public string FirstExpression()
+        public int firstTerm { get; private set; }
+        public int secondTerm { get; private set; }
+        public char mathOp { get; private set; }
+        public string[] parts { get; set; }
+
+        public string FirstExpression(string eqn)
         {
-            string eqn;
-            Console.WriteLine("Write Math Here");
-            eqn = Console.ReadLine();
             eqn = eqn.Replace(" ", "");
+            //Console.WriteLine(eqn);
 
             int ExpIndex = eqn.IndexOfAny(new char[] { '+', '-', '*', '/' });
-           
+
             if (ExpIndex == -1)
             {
                 Console.WriteLine("There is no operator in your equation");
             }
 
-            string[] parts = eqn.Split(eqn[ExpIndex]);
+            try
+            {
+                parts = eqn.Split(eqn[ExpIndex]);
+                Console.WriteLine(parts.Length);
+                firstTerm = int.Parse(eqn.Substring(0, ExpIndex));
+                secondTerm = int.Parse(eqn.Substring(ExpIndex + 1));
+                mathOp = eqn[ExpIndex];
 
-            Parse pExp = new Parse();
-            pExp.firstTerm = int.Parse(eqn.Substring(0,ExpIndex));
-            pExp.secondTerm = int.Parse(eqn.Substring(ExpIndex + 1));
-            pExp.mathOp = eqn[ExpIndex];
-
-            Console.WriteLine(pExp.firstTerm + " "+ pExp.mathOp + " " + pExp.secondTerm);
-            return eqn;
+                return parts[0];
+            }
+            catch (IndexOutOfRangeException)
+            {
+                throw new IndexOutOfRangeException("index is out of range");
+            }
+            catch (Exception)
+            {
+                throw new Exception("exception!");
+            }
         }
     }
 }

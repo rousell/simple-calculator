@@ -7,10 +7,60 @@ namespace simple_calculator.Tests
     public class ExpressionTests
     {
         [TestMethod]
-        public void ExpressionInitialTest()
+        public void ExpressionClassIsNotNull()
         {
             Expression myExp = new Expression();
-            Assert.IsNotNull(myExp.FirstExpression());
+            Assert.IsNotNull(myExp);
+        }
+        [TestMethod]
+        public void ExpressionHasFirstTerm()
+        {
+            string exampleExp = "1+2";
+            Expression myExp = new Expression();
+            myExp.FirstExpression(exampleExp);
+            var actual = myExp.firstTerm;
+            int expected = 1;
+
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void ExpressionHasSecondTerm() 
+        {
+            string exampleExp = "1+2";
+            Expression myExp = new Expression();
+            myExp.FirstExpression(exampleExp);
+            var actual = myExp.secondTerm;
+            int expected = 2;
+
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void ExpressionHasOperator()
+        {
+            string exampleExp = "1+2";
+            Expression myExp = new Expression();
+            myExp.FirstExpression(exampleExp);
+            var actual = myExp.mathOp;
+            char expected = '+';
+
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void ExpressionHasCorrectForm()
+        {
+            Expression myExp = new Expression();
+            myExp.FirstExpression("1 + 3");
+            var actual = myExp.parts.Length;
+            int expected = 2;
+
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        [ExpectedException (typeof(IndexOutOfRangeException))]
+        public void SimpleMathIndexOutOfRange()
+        {
+            Expression myExp = new Expression();
+            myExp.FirstExpression("1");
         }
     }
 }
