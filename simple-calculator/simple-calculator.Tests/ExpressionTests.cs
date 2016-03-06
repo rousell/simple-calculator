@@ -57,10 +57,17 @@ namespace simple_calculator.Tests
         }
         [TestMethod]
         [ExpectedException (typeof(IndexOutOfRangeException))]
-        public void SimpleMathIndexOutOfRange()
+        public void ExpressionIndexOutOfRange()
         {
             Expression myExp = new Expression();
-            myExp.FirstExpression("1");
+            myExp.FirstExpression("1 + 2 + 4");
+        }
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ExpressionHasNegativeTerms()
+        {
+            Expression myExp = new Expression();
+            myExp.FirstExpression("-1 + -5");
         }
     }
 }
