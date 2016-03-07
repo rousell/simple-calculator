@@ -69,5 +69,61 @@ namespace simple_calculator.Tests
             Expression myExp = new Expression();
             myExp.FirstExpression("-1 + -5");
         }
+
+        [TestMethod]
+        public void EvaluateAdditionTest()
+        {
+            Expression myExp = new Expression();
+            Evaluate Eval = new Evaluate();
+            var ex = myExp.FirstExpression("5 + 1");
+            int actual = Eval.EvaluateFirst(ex);
+            int expected = 6;
+
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void EvaluateSubtractionTest()
+        {
+            Expression myExp = new Expression();
+            Evaluate Eval = new Evaluate();
+            var ex = myExp.FirstExpression("5 - 1");
+            int actual = Eval.EvaluateFirst(ex);
+            int expected = 4;
+
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void EvaluateMultiplicationTest()
+        {
+            Expression myExp = new Expression();
+            Evaluate Eval = new Evaluate();
+            var ex = myExp.FirstExpression("5 * 1");
+            int actual = Eval.EvaluateFirst(ex);
+            int expected = 5;
+
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void EvaluateDivisionTest()
+        {
+            Expression myExp = new Expression();
+            Evaluate Eval = new Evaluate();
+            var ex = myExp.FirstExpression("6 / 2");
+            int actual = Eval.EvaluateFirst(ex);
+            int expected = 3;
+
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void EvaluateModulosTest()
+        {
+            Expression myExp = new Expression();
+            Evaluate Eval = new Evaluate();
+            var ex = myExp.FirstExpression("5 % 2");
+            int actual = Eval.EvaluateFirst(ex);
+            int expected = 1;
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

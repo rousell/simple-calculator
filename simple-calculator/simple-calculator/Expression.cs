@@ -13,13 +13,15 @@ namespace simple_calculator
         public char mathOp { get; private set; }
         public string[] parts { get; set; }
 
-        public string[] FirstExpression(string eqn)
+        public object[] FirstExpression(string eqn)
         {
             eqn = eqn.Replace(" ", "");
-            //Console.WriteLine(eqn);
 
             string eqnEdit = " " + eqn.Substring(1);
-            int ExpIndex = eqnEdit.IndexOfAny(new char[] { '+', '-', '*', '/' });
+            // This is to ensure that if the first number is negative, 
+            // it does not interpret that as the operator
+
+            int ExpIndex = eqnEdit.IndexOfAny(new char[] { '+', '-', '*', '/', '%' });
             if (ExpIndex == -1)
             {
                 throw new Exception();
@@ -39,7 +41,8 @@ namespace simple_calculator
             }
             mathOp = eqn[ExpIndex];
 
-            return parts;
+            object[] allparts = { firstTerm, mathOp, secondTerm };
+            return allparts;
             
         }
     }

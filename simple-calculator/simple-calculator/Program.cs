@@ -15,7 +15,9 @@ namespace simple_calculator
             Console.WriteLine("Write Math Here");
             eqn = Console.ReadLine();
             Expression math = new Expression();
-            math.FirstExpression(eqn);
+            var result = math.FirstExpression(eqn);
+            //Console.WriteLine(result[1]);
+            // Evaluate.
             Console.ReadKey();
         }
     }
