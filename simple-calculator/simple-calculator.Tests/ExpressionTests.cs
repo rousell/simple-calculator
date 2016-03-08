@@ -114,7 +114,7 @@ namespace simple_calculator.Tests
 
             Assert.AreEqual(expected, actual);
         }
-        [TestMethod]
+        /*[TestMethod]
         public void EvaluateModulosTest()
         {
             Expression myExp = new Expression();
@@ -122,6 +122,30 @@ namespace simple_calculator.Tests
             var ex = myExp.FirstExpression("5 % 2");
             int actual = Eval.EvaluateFirst(ex);
             int expected = 1;
+
+            Assert.AreEqual(expected, actual);
+        }*/
+        [TestMethod]
+        public void EvalStackLastAnswer()
+        {
+            Expression myExp = new Expression();
+            Evaluate Eval = new Evaluate();
+            var ex = myExp.FirstExpression("6 * 2");
+            var eqnresult = Eval.EvaluateFirst(ex);
+            int actual = Eval.lastA();
+            int expected = 12;
+
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void EvalStackLastQuestion()
+        {
+            Expression myExp = new Expression();
+            Evaluate Eval = new Evaluate();
+            var ex = myExp.FirstExpression("6 * 2");
+            var eqnresult = Eval.EvaluateFirst(ex);
+            string actual = Eval.last();
+            string expected = "6*2";
 
             Assert.AreEqual(expected, actual);
         }

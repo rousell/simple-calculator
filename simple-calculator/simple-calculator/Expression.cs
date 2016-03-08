@@ -12,10 +12,12 @@ namespace simple_calculator
         public int secondTerm { get; private set; }
         public char mathOp { get; private set; }
         public string[] parts { get; set; }
+        public string lasteqn { get; set; }
 
         public object[] FirstExpression(string eqn)
         {
             eqn = eqn.Replace(" ", "");
+            lasteqn = eqn;
 
             string eqnEdit = " " + eqn.Substring(1);
             // This is to ensure that if the first number is negative, 

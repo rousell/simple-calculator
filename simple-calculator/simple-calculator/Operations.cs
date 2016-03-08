@@ -28,5 +28,8 @@ namespace simple_calculator
         {
             return rt % lf;
         }
+
+        
+
     }
 }
