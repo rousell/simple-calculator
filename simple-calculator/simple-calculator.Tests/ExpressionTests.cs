@@ -114,7 +114,7 @@ namespace simple_calculator.Tests
 
             Assert.AreEqual(expected, actual);
         }
-        /*[TestMethod]
+        [TestMethod]
         public void EvaluateModulosTest()
         {
             Expression myExp = new Expression();
@@ -124,7 +124,7 @@ namespace simple_calculator.Tests
             int expected = 1;
 
             Assert.AreEqual(expected, actual);
-        }*/
+        }
         [TestMethod]
         public void EvalStackLastAnswer()
         {

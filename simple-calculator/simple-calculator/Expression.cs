@@ -23,7 +23,7 @@ namespace simple_calculator
             // This is to ensure that if the first number is negative, 
             // it does not interpret that as the operator
 
-            int ExpIndex = eqnEdit.IndexOfAny(new char[] { '+', '-', '*', '/', '%' });
+            int ExpIndex = eqnEdit.IndexOfAny(new char[] { '+', '-', '*', '/', '%', '=' });
             if (ExpIndex == -1)
             {
                 throw new Exception();
@@ -35,7 +35,11 @@ namespace simple_calculator
             {
                 throw new IndexOutOfRangeException();
             }
+
+            char term = (eqn.Substring(0, ExpIndex))[0];
+
             firstTerm = int.Parse(eqn.Substring(0, ExpIndex));
+
             secondTerm = int.Parse(eqn.Substring(ExpIndex + 1));
             if (firstTerm <  0 || secondTerm < 0)
             {

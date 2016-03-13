@@ -54,7 +54,7 @@ namespace simple_calculator
             }
             else if (op == '%')
             {
-                int answer = OpAction.div((int)(exp[0]), (int)(exp[2]));
+                int answer = OpAction.mod((int)(exp[0]), (int)(exp[2]));
                 stack_record.LastA = answer;
                 return answer;
             }
