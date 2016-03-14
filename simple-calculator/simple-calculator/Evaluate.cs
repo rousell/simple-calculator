@@ -9,13 +9,15 @@ namespace simple_calculator
     public class Evaluate
     {
         public Stack stack_record { get; set; }
+        public Dictionary<char, int> constant_record { get; set; }
         public Evaluate()
         {
             stack_record = new Stack();
+            constant_record = new Dictionary<char, int>();
         }
         public int answer { get; set; }
         public object[] question { get; set; }
-        public int EvaluateFirst(object[] exp)
+        public string EvaluateFirst(object[] exp)
         {
             Operations OpAction = new Operations();
 
@@ -32,35 +34,41 @@ namespace simple_calculator
             {
                 int answer = OpAction.add((int)(exp[0]), (int)(exp[2]));
                 stack_record.LastA = answer;
-                return answer;
+                return answer.ToString();
             }
             else if (op == '-')
             {
                 int answer = OpAction.sub((int)(exp[0]), (int)(exp[2]));
                 stack_record.LastA = answer;
-                return answer;
+                return answer.ToString();
             }
             else if (op == '*')
             {
                 int answer = OpAction.mul((int)(exp[0]), (int)(exp[2]));
                 stack_record.LastA = answer;
-                return answer;
+                return answer.ToString();
             }
             else if (op == '/')
             {
                 int answer = OpAction.div((int)(exp[0]), (int)(exp[2]));
                 stack_record.LastA = answer;
-                return answer;
+                return answer.ToString();
             }
             else if (op == '%')
             {
                 int answer = OpAction.mod((int)(exp[0]), (int)(exp[2]));
                 stack_record.LastA = answer;
+                return answer.ToString();
+            }
+            else if (op == '=')
+            {
+                string answer = OpAction.var((char)exp[0], (int)(exp[2]));
+                constant_record.Add((char)exp[0], (int)exp[2]);
                 return answer;
             }
             else
             {
-                return -1;
+                return "Invalid inputs!";
             }
         }
             

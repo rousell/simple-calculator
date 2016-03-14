@@ -62,13 +62,15 @@ namespace simple_calculator.Tests
             Expression myExp = new Expression();
             myExp.FirstExpression("1 + 2 + 4");
         }
-        [TestMethod]
+        #region NegativeTermTest
+        /*[TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void ExpressionHasNegativeTerms()
         {
             Expression myExp = new Expression();
             myExp.FirstExpression("-1 + -5");
-        }
+        }*/ 
+        #endregion
 
         [TestMethod]
         public void EvaluateAdditionTest()
@@ -76,8 +78,8 @@ namespace simple_calculator.Tests
             Expression myExp = new Expression();
             Evaluate Eval = new Evaluate();
             var ex = myExp.FirstExpression("5 + 1");
-            int actual = Eval.EvaluateFirst(ex);
-            int expected = 6;
+            string actual = Eval.EvaluateFirst(ex);
+            string expected = "6";
 
             Assert.AreEqual(expected, actual);
         }
@@ -87,8 +89,8 @@ namespace simple_calculator.Tests
             Expression myExp = new Expression();
             Evaluate Eval = new Evaluate();
             var ex = myExp.FirstExpression("5 - 1");
-            int actual = Eval.EvaluateFirst(ex);
-            int expected = 4;
+            string actual = Eval.EvaluateFirst(ex);
+            string expected = "4";
 
             Assert.AreEqual(expected, actual);
         }
@@ -98,8 +100,8 @@ namespace simple_calculator.Tests
             Expression myExp = new Expression();
             Evaluate Eval = new Evaluate();
             var ex = myExp.FirstExpression("5 * 1");
-            int actual = Eval.EvaluateFirst(ex);
-            int expected = 5;
+            string actual = Eval.EvaluateFirst(ex);
+            string expected = "5";
 
             Assert.AreEqual(expected, actual);
         }
@@ -109,8 +111,8 @@ namespace simple_calculator.Tests
             Expression myExp = new Expression();
             Evaluate Eval = new Evaluate();
             var ex = myExp.FirstExpression("6 / 2");
-            int actual = Eval.EvaluateFirst(ex);
-            int expected = 3;
+            string actual = Eval.EvaluateFirst(ex);
+            string expected = "3";
 
             Assert.AreEqual(expected, actual);
         }
@@ -120,8 +122,8 @@ namespace simple_calculator.Tests
             Expression myExp = new Expression();
             Evaluate Eval = new Evaluate();
             var ex = myExp.FirstExpression("5 % 2");
-            int actual = Eval.EvaluateFirst(ex);
-            int expected = 1;
+            string actual = Eval.EvaluateFirst(ex);
+            string expected = "1";
 
             Assert.AreEqual(expected, actual);
         }
@@ -146,6 +148,18 @@ namespace simple_calculator.Tests
             var eqnresult = Eval.EvaluateFirst(ex);
             string actual = Eval.last();
             string expected = "6*2";
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void TestingOutputOfVariableAssignment()
+        {
+            Expression myExp = new Expression();
+            Evaluate Eval = new Evaluate();
+            var ex = myExp.FirstExpression("x = 3");
+            var actual = Eval.EvaluateFirst(ex);
+            string expected = "saved 'x' as '3'";
 
             Assert.AreEqual(expected, actual);
         }

@@ -28,8 +28,10 @@ namespace simple_calculator
         {
             return rt % lf;
         }
-
-        
-
+        public string var(char rt, int lf)
+        {
+            string text = "saved '" + rt + "' as '" + lf + "'"; 
+            return text;
+        }
     }
 }

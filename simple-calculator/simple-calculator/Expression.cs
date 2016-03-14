@@ -13,6 +13,7 @@ namespace simple_calculator
         public char mathOp { get; private set; }
         public string[] parts { get; set; }
         public string lasteqn { get; set; }
+        public char firstVar { get; set; }
 
         public object[] FirstExpression(string eqn)
         {
@@ -30,25 +31,25 @@ namespace simple_calculator
             }
             
             parts = eqn.Split(eqn[ExpIndex]);
-            Console.WriteLine(parts.Length);
             if (parts.Length != 2 || ExpIndex== -1)
             {
                 throw new IndexOutOfRangeException();
             }
 
-            char term = (eqn.Substring(0, ExpIndex))[0];
-
-            firstTerm = int.Parse(eqn.Substring(0, ExpIndex));
-
-            secondTerm = int.Parse(eqn.Substring(ExpIndex + 1));
-            if (firstTerm <  0 || secondTerm < 0)
+            if (eqn.Substring(0,1).IndexOfAny(new char[] { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '+' }) == -1)
             {
-                throw new ArgumentException("a term is negative");
+                firstVar = (char)eqn[0];
+                secondTerm = int.Parse(eqn.Substring(ExpIndex + 1));
+                mathOp = eqn[ExpIndex];
+                object[] allparts = { firstVar, mathOp, secondTerm };
+                return allparts;
+            } else {
+                firstTerm = int.Parse(eqn.Substring(0, ExpIndex));
+                secondTerm = int.Parse(eqn.Substring(ExpIndex + 1));
+                mathOp = eqn[ExpIndex];
+                object[] allparts = { firstTerm, mathOp, secondTerm };
+                return allparts;
             }
-            mathOp = eqn[ExpIndex];
-
-            object[] allparts = { firstTerm, mathOp, secondTerm };
-            return allparts;
             
         }
     }

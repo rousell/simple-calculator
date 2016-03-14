@@ -10,14 +10,14 @@ namespace simple_calculator
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("this is Program.cs");
             string eqn;
             Console.WriteLine("Write Math Here");
             eqn = Console.ReadLine();
             Expression math = new Expression();
             var result = math.FirstExpression(eqn);
-            //Console.WriteLine(result[1]);
-            // Evaluate.
+            Evaluate Eval = new Evaluate();
+            string actual = Eval.EvaluateFirst(result);
+            Console.WriteLine(actual);
             Console.ReadKey();
         }
     }
