@@ -10,15 +10,28 @@ namespace simple_calculator
     {
         static void Main(string[] args)
         {
-            string eqn;
-            Console.WriteLine("Write Math Here");
-            eqn = Console.ReadLine();
-            Expression math = new Expression();
-            var result = math.FirstExpression(eqn);
-            Evaluate Eval = new Evaluate();
-            string actual = Eval.EvaluateFirst(result);
-            Console.WriteLine(actual);
-            Console.ReadKey();
+            bool status = true;
+            int n = 0;
+            while (status)
+            {
+                string eqn;
+                Console.Write("[{0}]> ",n);
+                n++;
+                eqn = Console.ReadLine();
+                if (eqn == "exit" || eqn == "quit")
+                {
+                    status = false;
+                }
+                else
+                {
+                    Expression math = new Expression();
+                    var result = math.FirstExpression(eqn);
+                    Evaluate Eval = new Evaluate();
+                    string actual = Eval.EvaluateFirst(result);
+                    Console.WriteLine("   = {0}",actual);
+                    //calc++;
+                }
+            }
         }
     }
 }
