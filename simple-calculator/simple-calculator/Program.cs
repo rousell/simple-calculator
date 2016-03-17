@@ -8,28 +8,44 @@ namespace simple_calculator
 {
     class Program
     {
+        //public static Stack stack_record { get; private set; }
+
         static void Main(string[] args)
         {
+            //Stack stack_record = new Stack();
+            Dictionary<char, int> constant_record = new Dictionary<char, int>();
+            Expression math = new Expression();
+            Evaluate Eval = new Evaluate();
+            //Stack stack_obj = Eval.ReturnStack();
+
             bool status = true;
             int n = 0;
             while (status)
             {
                 string eqn;
-                Console.Write("[{0}]> ",n);
+                Console.Write("[{0}]> ", n);
                 n++;
                 eqn = Console.ReadLine();
                 if (eqn == "exit" || eqn == "quit")
                 {
                     status = false;
+                } else if (eqn == "lastq" || eqn == "last"){
+                    if (eqn == "lastq")
+                    {
+                        var actual = Eval.last();
+                        Console.WriteLine("   = {0}", actual);
+                    }
+                    else
+                    {
+                        var actual = Eval.lastA();
+                        Console.WriteLine("   = {0}", actual);
+                    }
                 }
                 else
                 {
-                    Expression math = new Expression();
-                    var result = math.FirstExpression(eqn);
-                    Evaluate Eval = new Evaluate();
+                    var result = math.Parse(eqn);
                     string actual = Eval.EvaluateFirst(result);
                     Console.WriteLine("   = {0}",actual);
-                    //calc++;
                 }
             }
         }

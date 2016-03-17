@@ -15,8 +15,9 @@ namespace simple_calculator
         public string lasteqn { get; set; }
         public char firstVar { get; set; }
 
-        public object[] FirstExpression(string eqn)
+        public object[] Parse(string eqn)
         {
+            //stack_.LastQ = eqn;
             eqn = eqn.Replace(" ", "");
             lasteqn = eqn;
 
@@ -43,7 +44,11 @@ namespace simple_calculator
                 mathOp = eqn[ExpIndex];
                 object[] allparts = { firstVar, mathOp, secondTerm };
                 return allparts;
-            } else {
+            }
+            else
+            {
+                object[] varCheck = { eqn.Substring(0, ExpIndex), eqn.Substring(ExpIndex + 1) };
+                // enter code for index of any code for dictionary variables here
                 firstTerm = int.Parse(eqn.Substring(0, ExpIndex));
                 secondTerm = int.Parse(eqn.Substring(ExpIndex + 1));
                 mathOp = eqn[ExpIndex];

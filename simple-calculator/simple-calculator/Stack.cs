@@ -10,5 +10,8 @@ namespace simple_calculator
     {
         public string LastQ { get; set; }
         public int LastA { get; set; }
+
+        public Dictionary<char,int> constant { get; set; }
+
     }
 }
