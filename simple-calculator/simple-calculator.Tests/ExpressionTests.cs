@@ -174,5 +174,30 @@ namespace simple_calculator.Tests
             Stack stk = new Stack();
             Assert.IsNotNull(stk);
         }
+        [TestMethod]
+        public void DictionaryAssigningConstant()
+        {
+            Expression myExp = new Expression();
+            Evaluate Eval = new Evaluate();
+            var ex = myExp.Parse("x = 3", Eval);
+            var actual = Eval.stack_record.RetrieveValue('x');
+            int expected = 3;
+
+            Assert.AreEqual(expected, actual);
+        }
+        public void DictionaryRetrievingConstant()
+        {
+            Expression myExp = new Expression();
+            Evaluate Eval = new Evaluate();
+            var ex = myExp.Parse("x = 3", Eval);
+
+            Expression myExp2 = new Expression();
+            Evaluate Eval2 = new Evaluate();
+            var ex2 = myExp.Parse("4 + x", Eval);
+            var actual = ex2[2];
+            int expected = 4;
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
