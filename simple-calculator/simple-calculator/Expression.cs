@@ -8,51 +8,73 @@ namespace simple_calculator
 {
     public class Expression
     {
-        public int firstTerm { get; private set; }
-        public int secondTerm { get; private set; }
+        //public int part1 { get; set; }
+        //public int part2 { get; set; }
         public char mathOp { get; private set; }
         public string[] parts { get; set; }
         public string lasteqn { get; set; }
         public char firstVar { get; set; }
 
-        public object[] Parse(string eqn)
+        public object[] Parse(string eqn, Evaluate Eval)
         {
             //stack_.LastQ = eqn;
             eqn = eqn.Replace(" ", "");
-            lasteqn = eqn;
 
             string eqnEdit = " " + eqn.Substring(1);
             // This is to ensure that if the first number is negative, 
             // it does not interpret that as the operator
 
             int ExpIndex = eqnEdit.IndexOfAny(new char[] { '+', '-', '*', '/', '%', '=' });
+            mathOp = eqn[ExpIndex];
+            parts = eqn.Split(eqn[ExpIndex]);
+
             if (ExpIndex == -1)
             {
                 throw new Exception();
             }
             
-            parts = eqn.Split(eqn[ExpIndex]);
             if (parts.Length != 2 || ExpIndex== -1)
             {
                 throw new IndexOutOfRangeException();
             }
 
-            if (eqn.Substring(0,1).IndexOfAny(new char[] { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '+' }) == -1)
+            if (mathOp == '=')
             {
-                firstVar = (char)eqn[0];
-                secondTerm = int.Parse(eqn.Substring(ExpIndex + 1));
-                mathOp = eqn[ExpIndex];
-                object[] allparts = { firstVar, mathOp, secondTerm };
+                object[] allparts = Eval.stack_record.AssignConstant(eqn, parts);
                 return allparts;
             }
+ 
             else
             {
-                object[] varCheck = { eqn.Substring(0, ExpIndex), eqn.Substring(ExpIndex + 1) };
-                // enter code for index of any code for dictionary variables here
-                firstTerm = int.Parse(eqn.Substring(0, ExpIndex));
-                secondTerm = int.Parse(eqn.Substring(ExpIndex + 1));
-                mathOp = eqn[ExpIndex];
-                object[] allparts = { firstTerm, mathOp, secondTerm };
+                //part1
+                int part1;
+                bool success1 = int.TryParse(eqn.Substring(0, ExpIndex), out part1);
+                if (!success1)
+                {
+                    char cLookup = char.ToLower(eqn.Substring(0, ExpIndex)[0]);
+                    part1 = Eval.stack_record.RetrieveValue(cLookup);
+                    if (part1 == -1)
+                    {
+                        throw new ArgumentException("That doesn't look to be a valid first term");
+                    }
+                }
+
+                //part2
+                //secondTerm = int.Parse(eqn.Substring(ExpIndex + 1));
+                int part2;
+                bool success2 = int.TryParse(eqn.Substring(ExpIndex + 1), out part2);
+                if (!success2)
+                {
+                    char cLookup = char.ToLower(eqn.Substring(ExpIndex + 1)[0]);
+                    part2 = Eval.stack_record.RetrieveValue(cLookup);
+                    if (part2 == -1)
+                    {
+                        throw new ArgumentException("That doesn't look to be a valid second term");
+                    }
+                }
+
+
+                object[] allparts = { part1, mathOp, part2 };
                 return allparts;
             }
             

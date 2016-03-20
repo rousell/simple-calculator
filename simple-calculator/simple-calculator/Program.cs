@@ -13,7 +13,6 @@ namespace simple_calculator
         static void Main(string[] args)
         {
             //Stack stack_record = new Stack();
-            Dictionary<char, int> constant_record = new Dictionary<char, int>();
             Expression math = new Expression();
             Evaluate Eval = new Evaluate();
             //Stack stack_obj = Eval.ReturnStack();
@@ -43,7 +42,7 @@ namespace simple_calculator
                 }
                 else
                 {
-                    var result = math.Parse(eqn);
+                    var result = math.Parse(eqn, Eval);
                     string actual = Eval.EvaluateFirst(result);
                     Console.WriteLine("   = {0}",actual);
                 }

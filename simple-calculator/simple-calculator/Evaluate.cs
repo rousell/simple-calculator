@@ -13,6 +13,7 @@ namespace simple_calculator
         {
             stack_record = new Stack();
         }
+
         public int answer { get; set; }
         public object[] question { get; set; }
         public string EvaluateFirst(object[] exp)
@@ -61,7 +62,6 @@ namespace simple_calculator
             else if (op == '=')
             {
                 string answer = OpAction.var((char)exp[0], (int)(exp[2]));
-                //constant_record.Add((char)exp[0], (int)exp[2]);
                 return answer;
             }
             else
