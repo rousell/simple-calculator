@@ -35,7 +35,7 @@ namespace simple_calculator
             
             if (parts.Length != 2 || ExpIndex== -1)
             {
-                throw new IndexOutOfRangeException();
+                throw new IndexOutOfRangeException("You did not enter a valid equation");
             }
 
             if (mathOp == '=')

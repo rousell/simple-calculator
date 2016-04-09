@@ -45,14 +45,14 @@ namespace simple_calculator
             if (!success)
             {
                 throw new ArgumentException("You can't assign that value, try another");
-            }
-            if (constant.ContainsKey(rconstant))
+            } else if (constant.ContainsKey(rconstant))
             {
-                throw new ArgumentException("You have already used that constant");
+                throw new ArgumentException("You have already used that variable");
+            } else
+            {
+                constant.Add(rconstant, rvalue);
+                return new object[] { rconstant, op, rvalue };
             }
-
-            constant.Add(rconstant, rvalue);
-            return new object[] { rconstant, op, rvalue };
 
         }
     }

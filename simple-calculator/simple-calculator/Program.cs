@@ -8,14 +8,11 @@ namespace simple_calculator
 {
     class Program
     {
-        //public static Stack stack_record { get; private set; }
 
         static void Main(string[] args)
         {
-            //Stack stack_record = new Stack();
             Expression math = new Expression();
             Evaluate Eval = new Evaluate();
-            //Stack stack_obj = Eval.ReturnStack();
 
             bool status = true;
             int n = 0;
@@ -42,9 +39,23 @@ namespace simple_calculator
                 }
                 else
                 {
-                    var result = math.Parse(eqn, Eval);
-                    string actual = Eval.EvaluateFirst(result);
-                    Console.WriteLine("   = {0}",actual);
+                    //object[] result;
+                    try
+                    {
+                        var result = math.Parse(eqn, Eval);
+                        string actual = Eval.EvaluateFirst(result);
+                        Console.WriteLine("   = {0}", actual);
+                    }
+                    catch (ArgumentException e)
+                    {
+                        Console.WriteLine("     {0}",e.Message);
+                    } catch (IndexOutOfRangeException e)
+                    {
+                        Console.WriteLine("    {0}",e.Message);
+                    }
+                    //var result = math.Parse(eqn, Eval);
+                    //string actual = Eval.EvaluateFirst(result);
+                    //Console.WriteLine("   = {0}",actual);
                 }
             }
         }
